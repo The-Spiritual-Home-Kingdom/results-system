@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>The Spiritual Home Kingdom</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+
+<body>
+
+  <aside class="sidebar">
+    <div class="side-logo-wrap">
+      <img src="assets/trsh.png" alt="TRSH Logo" class="side-logo"/>
+      <div class="side-fallback">TSHK</div>
+    </div>
+
+    <div class="side-title">TSHK SYSTEM</div>
+
+    <button class="nav-btn active" data-page="dashboard">⌂ Dashboard</button>
+    <button class="nav-btn" data-page="writer">○ Writer Sign In</button>
+    <button class="nav-btn" data-page="stats">▤ View Stats</button>
+    <button class="nav-btn" data-page="admin">△ Admin</button>
+    <button class="nav-btn" data-page="marker">♧ Marker</button>
+    <button class="nav-btn" data-page="audit">◷ Audit Log</button>
+  </aside>
+
+  <main class="app">
+
+    <section class="hero">
+      <div class="top-wave"></div>
+
+      <div class="logo-row">
+        <img src="assets/trsh.png" alt="TRSH Logo" class="main-logo"/>
+        <div></div>
+        <img src="assets/msri.png" alt="MSRI Logo" class="main-logo"/>
+      </div>
+
+      <h1>THE SPIRITUAL HOME KINGDOM</h1>
+      <h3>African Indigenous Spirituality (AIS)</h3>
+      <div class="divider"></div>
+
+      <h2>WELCOME</h2>
+      <div class="divider"></div>
+      <h4>Results Management System</h4>
+
+      <div class="symbols">
+        <div class="pm">−</div>
+
+        <svg viewBox="0 0 100 100">
+          <circle cx="34" cy="50" r="23"></circle>
+          <path d="M57 50 H78 L90 34"></path>
+        </svg>
+
+        <svg viewBox="0 0 100 100">
+          <polygon points="50,12 88,82 12,82"></polygon>
+          <path d="M50 36 V76"></path>
+          <path d="M42 50 H58"></path>
+          <path d="M42 60 H58"></path>
+          <path d="M42 70 H58"></path>
+        </svg>
+
+        <svg viewBox="0 0 100 100">
+          <polygon points="50,12 82,42 18,42"></polygon>
+          <polygon points="50,88 82,58 18,58"></polygon>
+        </svg>
+
+        <div class="pm">+</div>
+
+        <svg viewBox="0 0 100 100">
+          <circle cx="50" cy="50" r="25"></circle>
+        </svg>
+
+        <svg viewBox="0 0 100 100">
+          <path d="M20 32 H80"></path>
+          <path d="M20 50 H80"></path>
+          <path d="M20 68 H80"></path>
+        </svg>
+      </div>
+
+      <div class="equation">-1&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;+1&nbsp;&nbsp;&nbsp;=&nbsp;&nbsp;&nbsp;2</div>
+    </section>
+
+    <!-- DASHBOARD -->
+    <section id="dashboard" class="page active-page">
+      <h2 class="section-title">ACCESS PORTAL</h2>
+
+      <div class="portal-grid">
+        <div class="portal-card">
+          <div class="portal-icon">✦</div>
+          <h3>ADMIN</h3>
+          <p>Full system access<br/>Manage sessions, records and logs</p>
+          <button onclick="goToPage('admin')">LOGIN</button>
+        </div>
+
+        <div class="portal-card">
+          <div class="portal-icon">⌁</div>
+          <h3>MARKER</h3>
+          <p>Capture and<br/>manage marks</p>
+          <button onclick="goToPage('marker')">LOGIN</button>
+        </div>
+
+        <div class="portal-card">
+          <div class="portal-icon">○</div>
+          <h3>WRITER</h3>
+          <p>Register using a valid<br/>session code</p>
+          <button onclick="goToPage('writer')">REGISTER</button>
+        </div>
+      </div>
+
+      <div class="values-card">
+        <div>
+          <h3>INTEGRITY</h3>
+          <p>We uphold the quality of honesty and having strong moral principles.</p>
+        </div>
+
+        <div>
+          <h3>UNITY</h3>
+          <p>We are positioned to unite indiscriminately in spirit deed, thought and embrace our diversity.</p>
+        </div>
+
+        <div>
+          <h3>WISDOM</h3>
+          <p>We are guided by His Spiritual Royal Majesty Imboni Dr. Uzwi Lezwe Radebe.</p>
+        </div>
+
+        <div>
+          <h3>POWER</h3>
+          <p>The Power of a Black Man is in their Spirituality.</p>
+        </div>
+      </div>
+
+      <footer>
+        Rooted in Spirit • Guided by the Divine • Driven by Purpose
+      </footer>
+    </section>
+
+    <!-- WRITER -->
+    <section id="writer" class="page">
+      <h2 class="section-title">Writer Sign In</h2>
+
+      <div class="form-card">
+        <div class="field">
+          <label>Session Code *</label>
+          <input id="writerSessionCode" placeholder="Enter session code"/>
+        </div>
+
+        <button onclick="validateSession()">VALIDATE SESSION</button>
+
+        <div id="sessionMessage" class="message"></div>
+
+        <!-- IMPORTANT: hidden until session is validated -->
+        <form id="writerForm" class="hidden">
+
+          <div class="form-grid">
+
+            <div class="field">
+              <label>Name *</label>
+              <input id="name" placeholder="e.g. Sosha"/>
+            </div>
+
+            <div class="field">
+              <label>Surname *</label>
+              <input id="surname" placeholder="e.g. Lomoya"/>
+            </div>
+
+            <div class="field">
+              <label>Email *</label>
+              <input id="email" placeholder="e.g. name@gmail.com"/>
+            </div>
+
+            <div class="field">
+              <label>Cellphone Number *</label>
+              <input id="cellphone" placeholder="e.g. 0712345678"/>
+            </div>
+
+            <div class="field">
+              <label>TRSH Membership Number *</label>
+              <input id="membership" placeholder="e.g. TRSH-GP-0000-00000"/>
+            </div>
+
+            <div class="field">
+              <label>State *</label>
+              <input id="state" placeholder="e.g. Gauteng"/>
+            </div>
+
+            <div class="field">
+              <label>Spiritual Centre *</label>
+              <input id="centre" placeholder="e.g. Ebhubesini"/>
+            </div>
+
+            <div class="field">
+              <label>Year started ekhayeni *</label>
+              <input id="yearStarted" placeholder="e.g. 2026"/>
+            </div>
+
+            <div class="field">
+              <label>Date of Inhlambuluko *</label>
+              <input id="inhlambulukoDate" type="date"/>
+            </div>
+
+          </div>
+
+          <div class="field">
+            <label>Are you a servant? *</label>
+            <select id="servant" onchange="toggleServantType()">
+              <option value="No">No</option>
+              <option value="Yes">Yes</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <input id="servantType" class="hidden" placeholder="e.g. Nceku, Cardet, Intsizwa, Marshall"/>
+          </div>
+
+          <button type="button" onclick="submitWriter()">SUBMIT REGISTRATION</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- STATS -->
+    <section id="stats" class="page">
+      <h2 class="section-title">View Stats</h2>
+
+      <div class="form-card">
+        <div class="field">
+          <label>Filter by date</label>
+          <input id="statsDate" type="date"/>
+        </div>
+
+        <button onclick="loadStats()">LOAD STATS</button>
+
+        <div class="stats-grid">
+          <div class="metric">
+            <span id="statRegistered">0</span>
+            <p>Registered</p>
+          </div>
+
+          <div class="metric">
+            <span id="statMarked">0</span>
+            <p>Marked</p>
+          </div>
+
+          <div class="metric">
+            <span id="statPassed">0</span>
+            <p>Passed</p>
+          </div>
+
+          <div class="metric">
+            <span id="statFailed">0</span>
+            <p>Failed</p>
+          </div>
+
+          <div class="metric">
+            <span id="statUnsent">0</span>
+            <p>Emails Not Sent</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ADMIN -->
+    <section id="admin" class="page">
+      <h2 class="section-title">Admin</h2>
+
+      <div id="adminLogin" class="form-card">
+        <div class="field">
+          <label>Admin Password</label>
+          <input id="adminPassword" type="password" placeholder="Enter admin password"/>
+        </div>
+
+        <button onclick="adminLogin()">LOGIN</button>
+      </div>
+
+      <div id="adminPanel" class="hidden">
+        <button class="logout" onclick="adminLogout()">LOGOUT ADMIN</button>
+
+        <div class="admin-tabs">
+          <button onclick="showAdminTool('sessions')">Sessions</button>
+          <button onclick="showAdminTool('writers')">Writers</button>
+          <button onclick="showAdminTool('marks')">Marks / Remarks</button>
+          <button onclick="showAdminTool('emails')">Emails</button>
+          <button onclick="showAdminTool('audit')">Audit Logs</button>
+        </div>
+
+        <div id="adminSessions" class="admin-tool form-card">
+          <h3>Generate Session Code</h3>
+
+          <div class="field">
+            <label>Session Date</label>
+            <input id="sessionDate" type="date"/>
+          </div>
+
+          <div class="field">
+            <label>Session Time</label>
+            <select id="sessionTime"></select>
+          </div>
+
+          <button onclick="generateSessionCode()">GENERATE CODE</button>
+          <div id="sessionCodeResult" class="code-box"></div>
+        </div>
+
+        <div id="adminWriters" class="admin-tool form-card hidden">
+          <h3>Manage Writers</h3>
+
+          <div class="field">
+            <label>Search Membership Number</label>
+            <input id="adminWriterSearch" placeholder="Enter membership number"/>
+          </div>
+
+          <button onclick="adminFindWriter()">SEARCH WRITER</button>
+          <div id="adminWriterResult"></div>
+        </div>
+
+        <div id="adminMarks" class="admin-tool form-card hidden">
+          <h3>Manage Marks / Remarks</h3>
+
+          <div class="field">
+            <label>Search Membership Number</label>
+            <input id="adminMarkSearch" placeholder="Enter membership number"/>
+          </div>
+
+          <button onclick="adminFindMark()">SEARCH MARK</button>
+          <div id="adminMarkResult"></div>
+        </div>
+
+        <div id="adminEmails" class="admin-tool form-card hidden">
+          <h3>Email Controls</h3>
+
+          <div class="field">
+            <label>Membership Number</label>
+            <input id="resendMember" placeholder="Enter membership number"/>
+          </div>
+
+          <button onclick="resendOneEmail()">RESEND RESULT EMAIL</button>
+          <button onclick="sendPendingBatch()">SEND PENDING BATCH</button>
+
+          <div id="emailControlResult" class="message"></div>
+        </div>
+
+        <div id="adminAudit" class="admin-tool form-card hidden">
+          <h3>Audit Logs - Read Only</h3>
+
+          <div class="field">
+            <label>Search Logs</label>
+            <input id="auditSearch" placeholder="Search logs"/>
+          </div>
+
+          <button onclick="loadAuditLogs()">LOAD LOGS</button>
+          <div id="auditTable"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MARKER -->
+    <section id="marker" class="page">
+      <h2 class="section-title">Marker</h2>
+
+      <div id="markerLogin" class="form-card">
+        <div class="field">
+          <label>Marker Password</label>
+          <input id="markerPassword" type="password" placeholder="Enter marker password"/>
+        </div>
+
+        <button onclick="markerLogin()">LOGIN</button>
+      </div>
+
+      <div id="markerPanel" class="hidden form-card">
+        <button class="logout" onclick="markerLogout()">LOGOUT MARKER</button>
+
+        <h3>Capture Mark</h3>
+
+        <div class="field">
+          <label>TRSH Membership Number</label>
+          <input id="markerSearch" placeholder="Enter membership number"/>
+        </div>
+
+        <button onclick="markerFindWriter()">SEARCH</button>
+
+        <div id="markerWriterResult"></div>
+      </div>
+    </section>
+
+    <!-- AUDIT -->
+    <section id="audit" class="page">
+      <h2 class="section-title">Audit Log</h2>
+
+      <div class="form-card">
+        <p>Audit logs are read-only.</p>
+
+        <div class="field">
+          <label>Search Logs</label>
+          <input id="auditSearchPublic" placeholder="Search logs"/>
+        </div>
+
+        <button onclick="loadAuditLogsPublic()">LOAD LOGS</button>
+
+        <div id="auditTablePublic"></div>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="script.js"></script>
+
+</body>
+</html>
