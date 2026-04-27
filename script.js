@@ -59,36 +59,76 @@ async function validateSession() {
 }
 
 async function submitWriter() {
+  console.log("Submit clicked");
+
   const data = {
-    session_code: document.getElementById("writerSessionCode").value.trim().toUpperCase(),
-    name: val("name"),
-    surname: val("surname"),
-    email: val("email"),
-    cellphone_number: val("cellphone"),
-    membership_number: val("membership"),
-    state: val("state"),
-    spiritual_centre: val("centre"),
-    year_started_ekhayeni: val("yearStarted"),
-    date_of_imhlabuluko: val("imhlabulukoDate"),
-    servant: val("servant"),
-    servant_type: val("servantType"),
+    session_code: getValue("writerSessionCode"),
+    name: getValue("name"),
+    surname: getValue("surname"),
+    email: getValue("email"),
+    cellphone_number: getValue("cellphone"),
+    membership_number: getValue("membership"),
+    state: getValue("state"),
+    spiritual_centre: getValue("centre"),
+    year_started_ekhayeni: getValue("yearStarted"),
+
+    // your HTML uses inhlambulukoDate
+    date_of_imhlabuluko: getValue("inhlambulukoDate"),
+
+    servant: getValue("servant"),
+    servant_type: getValue("servantType")
   };
 
-  const required = ["session_code","name","surname","email","cellphone_number","membership_number","state","spiritual_centre","year_started_ekhayeni","date_of_imhlabuluko","servant"];
-  if (data.servant === "Yes") required.push("servant_type");
+  console.log("Writer data:", data);
 
-  for (const k of required) {
-    if (!data[k]) return alert("Please complete all mandatory fields.");
+  const required = [
+    "session_code",
+    "name",
+    "surname",
+    "email",
+    "cellphone_number",
+    "membership_number",
+    "state",
+    "spiritual_centre",
+    "year_started_ekhayeni",
+    "date_of_imhlabuluko",
+    "servant"
+  ];
+
+  if (data.servant === "Yes") {
+    required.push("servant_type");
+  }
+
+  const missing = required.filter(key => !data[key]);
+
+  if (missing.length > 0) {
+    alert("Please complete all mandatory fields. Missing: " + missing.join(", "));
+    return;
   }
 
   const res = await api("registerWriter", data);
-  if (!res.ok) return alert(res.message);
+  console.log("Register response:", res);
+
+  if (!res.ok) {
+    alert(res.message);
+    return;
+  }
 
   alert("Thank you for the registration. Your details were captured successfully.");
+
   document.getElementById("writerForm").reset();
   document.getElementById("writerForm").classList.add("hidden");
   document.getElementById("writerSessionCode").value = "";
   msg("sessionMessage", "");
+}
+
+function getValue(id) {
+  const el = document.getElementById(id);
+  if (!el) {
+    console.error("Missing element ID:", id);
+    return "";
+  }
+  return String(el.value || "").trim();
 }
 
 function val(id) {
@@ -381,3 +421,13 @@ function renderTable(id, rows) {
   document.getElementById(id).innerHTML = html;
 }
 
+document.addEventListener("DOMContentLoaded", () => {
+  const writerForm = document.getElementById("writerForm");
+
+  if (writerForm) {
+    writerForm.addEventListener("submit", function(e) {
+      e.preventDefault();
+      submitWriter();
+    });
+  }
+});
